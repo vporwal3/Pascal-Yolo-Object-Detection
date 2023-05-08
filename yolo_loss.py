@@ -127,7 +127,7 @@ class YoloLoss(nn.Module):
         
         loss = 0.0
         for i in range(self.B):
-            loss = loss + obj * torch.pow(pred_boxes_list[i][:, :, :, -1], 2)
+            loss = loss + obj * torch.pow(0-pred_boxes_list[i][:, :, :, -1], 2)
          
 
         return self.l_noobj * torch.sum(loss)
