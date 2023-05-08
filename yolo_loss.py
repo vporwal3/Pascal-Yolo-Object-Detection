@@ -216,7 +216,7 @@ class YoloLoss(nn.Module):
         reg_loss = self.get_regression_loss(best_boxes[..., :-1], target_boxes_reshape)/pred_tensor.size(0)
         
        
-        containing_obj_loss = self.get_contain_conf_loss(best_boxes[..., -1], best_ious)/pred_tensor.size(0)
+        containing_obj_loss = self.get_contain_conf_loss(best_boxes[..., -1], best_ious)/pred_tensor.size(0) #best_ious values serve as a proxy for ground truth object confidence scores
 
         
         final_loss = (class_loss + no_obj_loss + reg_loss + containing_obj_loss)
