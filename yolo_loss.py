@@ -197,9 +197,9 @@ class YoloLoss(nn.Module):
        
         no_obj_loss =  self.get_no_object_loss(pred_boxes_list, has_object_map)/pred_tensor.size(0)
 
-        
+        #filtering out no object boxes
         has_map = has_object_map.view(pred_tensor.size(0), self.S, self.S, 1).long()
-        broad_box1 = has_map * pred_boxes_list[0]
+        broad_box1 = has_map * pred_boxes_list[0] 
         box1 = broad_box1[~torch.all(broad_box1==0, axis=3)] 
         
         broad_box2 = has_map * pred_boxes_list[1]
